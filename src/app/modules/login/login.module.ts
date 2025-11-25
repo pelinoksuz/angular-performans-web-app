@@ -9,7 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './login.component';
+import { CoreModule } from '../../core/core.module';
 
 const routes: Routes = [
   { path: '', component: LoginComponent }
@@ -25,7 +26,8 @@ const routes: Routes = [
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    CoreModule
   ]
 })
 export class LoginModule {}

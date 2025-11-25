@@ -1,0 +1,28 @@
+@use '../../../styles/variables' as *;
+
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  background: $bg-light;
+
+  &__mid {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  &__content-wrapper {
+    flex: 1;
+    overflow-y: auto; // when the content is longer than the screen
+    background: $bg-light;
+    padding: 16px;
+  }
+
+  &__footer-band {
+    background-color: $footer-accent;
+    height: 10px;
+    width: 100%;
+  }
+}
