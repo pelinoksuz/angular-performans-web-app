@@ -1,0 +1,59 @@
+<div class="vehicles-page">
+
+  <div class="vehicles-page__header">
+    <h2 class="vehicles-page__header__title">Vehicles ({{ vehicles.length }})</h2>
+
+    <div class="vehicles-page__actions">
+      <input
+        class="vehicles-page__actions__search-input"
+        type="text"
+        placeholder="Search"
+      />
+
+      <button class="vehicles-page__actions__button">＋</button>
+      <button class="vehicles-page__actions__button">📄</button>
+      <button class="vehicles-page__actions__button">🗑️</button>
+
+    </div>
+
+  </div>
+
+  <!-- TABLE -->
+  <div class="vehicles-table">
+
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Vehicle Name</th>
+          <th>Model</th>
+          <th>Project</th>
+          <th>Health</th>
+          <th>SCC</th>
+          <th>Temp</th>
+          <th>Torque</th>
+          <th>Speed</th>
+          <th>Updated</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let v of vehicles">
+          <td><input type="checkbox" /></td>
+          <td>{{ v.vehicleName }}</td>
+          <td>{{ v.model }}</td>
+          <td>{{ v.project }}</td>
+          <td>{{ v.health }}</td>
+          <td>{{ v.scc }}</td>
+          <td>{{ v.temp }}</td>
+          <td>{{ v.torque }}</td>
+          <td>{{ v.speed }}</td>
+          <td>{{ v.updated }}</td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
