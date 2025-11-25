@@ -1,18 +1,14 @@
 <div class="login-page">
-  <!-- HEADER -->
-  <header class="app-header">
-    <h1>AutoOps Control</h1>
-  </header>
-
+<app-header userMode=""></app-header>
   <!-- MAIN FORM CARD -->
-  <main class="login-container">
-    <mat-card>
-      <h2>Welcome back!</h2>
-      <p class="subtitle">Select your role to continue.</p>
+  <main class="login-page__main">
+    <mat-card class="login-page__card">
+      <h2 class="login-page__welcome">Welcome back!</h2>
+      <p class="login-page__subtitle">Select your role to continue.</p>
 
-      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login-page__form">
         <!-- Role Dropdown -->
-        <mat-form-field appearance="outline" class="full-width">
+        <mat-form-field appearance="outline" class="login-page__field">
           <mat-label>Role</mat-label>
           <mat-select formControlName="role">
             <mat-option value="">Please, select your role</mat-option>
@@ -23,17 +19,17 @@
         </mat-form-field>
 
         <!-- Access Code Input -->
-        <mat-form-field appearance="outline" class="full-width">
+        <mat-form-field appearance="outline" class="login-page__field">
           <mat-label>Access code</mat-label>
           <input matInput formControlName="accessCode" type="password" placeholder="Enter access code" />
         </mat-form-field>
 
         <!-- Buttons -->
-        <button mat-raised-button color="primary" class="sign-in-btn" type="submit" [disabled]="loginForm.invalid">
+        <button mat-raised-button color="primary" class="login-page__button login-page__button--primary" type="submit" [disabled]="loginForm.invalid">
           Sign In
         </button>
 
-        <button mat-stroked-button color="primary" class="guest-btn" type="button" (click)="continueAsGuest()">
+        <button mat-stroked-button color="primary" class="login-page__button login-page__button--secondary" type="button" (click)="continueAsGuest()">
           Continue as Guest
         </button>
       </form>
@@ -41,5 +37,5 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="footer-band"></footer>
+  <footer class="login-page__footer"></footer>
 </div>
