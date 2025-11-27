@@ -1,5 +1,9 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  font-family: $font-family-base;
 }

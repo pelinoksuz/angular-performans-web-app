@@ -1,0 +1,82 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+// ======================================
+// LOGIN PAGE STYLES
+// ======================================
+
+.login-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: $bg-light;
+  overflow: hidden;
+
+  &__main {
+    @include flex-center;
+    flex: 1;
+  }
+
+  &__card {
+    width: 350px;
+    padding: 2rem;
+    background: #fff;
+    border-radius: $border-radius;
+    box-shadow: $shadow-soft;
+
+    @include respond-to(sm) {
+      width: 90%;
+      padding: 1.5rem;
+    }
+  }
+
+  &__welcome {
+    margin-bottom: 0.3rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #222;
+  }
+
+  &__subtitle {
+    margin-bottom: 1.5rem;
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  &__field {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  &__button {
+    width: 100%;
+    margin-top: 0.8rem;
+    transition: 0.2s ease;
+
+    &--primary {
+      background-color: $primary-color;
+      color: white;
+
+      &:hover {
+        background-color: $primary-dark;
+      }
+    }
+
+    &--secondary {
+      border-color: $primary-color;
+      color: $primary-color;
+
+      &:hover {
+        background-color: lighten($primary-color, 40%);
+      }
+    }
+  }
+
+  &__footer {
+    background-color: $footer-accent;
+    height: 20px;
+    width: 100%;
+  }
+}
+
+

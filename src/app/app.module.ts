@@ -12,9 +12,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { LayoutModule } from './layout/layout.module';
+import { CoreModule } from './core/core.module';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MainLayoutComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -26,7 +30,13 @@ import { MatCardModule } from '@angular/material/card';
     MatCardModule,
     AppRoutingModule,
     MatSelectModule,
+    LayoutModule,
+    CoreModule
   ],
+  providers: [
+    provideHttpClient()
+  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {}
