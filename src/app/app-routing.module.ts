@@ -22,10 +22,8 @@ const routes: Routes = [
       },
       {
         path: 'vehicles',
-        loadChildren: () =>
-          import('./modules/vehicles/vehicles.module').then(
-            m => m.VehiclesModule
-          )
+        loadComponent: () =>
+          import('./modules/vehicles/vehicles.component').then(c => c.VehiclesComponent)
       }
     ]
   }

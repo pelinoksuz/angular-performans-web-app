@@ -16,6 +16,7 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
 import { LayoutModule } from './layout/layout.module';
 import { CoreModule } from './core/core.module';
 import { provideHttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, MainLayoutComponent],
@@ -31,7 +32,8 @@ import { provideHttpClient } from '@angular/common/http';
     AppRoutingModule,
     MatSelectModule,
     LayoutModule,
-    CoreModule
+    CoreModule,
+    FormsModule
   ],
   providers: [
     provideHttpClient()

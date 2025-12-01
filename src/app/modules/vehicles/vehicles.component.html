@@ -4,15 +4,26 @@
     <h2 class="vehicles-page__header__title">Vehicles ({{ vehicles.length }})</h2>
 
     <div class="vehicles-page__actions">
+
       <input
         class="vehicles-page__actions__search-input"
         type="text"
-        placeholder="Search"
+        placeholder="Search Vehicle Name"
+        [(ngModel)]="searchTerm"
+        (input)="onSearch()"
       />
 
-      <button class="vehicles-page__actions__button">＋</button>
-      <button class="vehicles-page__actions__button">📄</button>
-      <button class="vehicles-page__actions__button">🗑️</button>
+      <button class="vehicles-page__actions__button" (click)="onAdd()">
+        <mat-icon>add</mat-icon>
+      </button>
+
+      <button class="vehicles-page__actions__button" (click)="onDuplicate()">
+        <mat-icon>content_copy</mat-icon>
+      </button>
+
+      <button class="vehicles-page__actions__button" (click)="onDelete()">
+        <mat-icon>delete</mat-icon>
+      </button>
 
     </div>
 
@@ -38,8 +49,8 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let v of vehicles">
-          <td><input type="checkbox" /></td>
+        <tr *ngFor="let v of filteredVehicles">
+          <td><input type="checkbox" [(ngModel)]="v.selected" /></td>
           <td>{{ v.vehicleName }}</td>
           <td>{{ v.model }}</td>
           <td>{{ v.project }}</td>
