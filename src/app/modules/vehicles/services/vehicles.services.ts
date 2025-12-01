@@ -36,4 +36,19 @@ export class VehiclesService {
     const mins = Math.floor(Math.random() * 10000);
     return `${Math.floor(mins / 60)} min ago`;
   }
+
+  getDashboardSummary() {
+  return this.getVehicles().pipe(
+    map(vehicles => {
+      return {
+        total: vehicles.length,
+        ok: vehicles.filter((v: { health: string; }) => v.health === 'OK').length,
+        warn: vehicles.filter((v: { health: string; }) => v.health === 'WARN').length,
+        error: vehicles.filter((v: { health: string; }) => v.health === 'ERROR').length,
+        latest: vehicles.slice(0, 5)
+      };
+    })
+  );
+}
+
 }

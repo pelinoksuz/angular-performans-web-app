@@ -1,39 +1,49 @@
-<main class="dashboard-content">
-  <section class="stats">
-    <div class="stat">
-      <h2>150</h2>
+<main class="dashboard">
+
+  <!-- TOP STATS SUMMARY -->
+  <section class="stats-grid">
+    <div class="stat-card">
+      <h2>{{ summary?.total }}</h2>
       <p>Total Vehicles</p>
     </div>
-    <div class="stat">
-      <h2>32</h2>
-      <p>Open Work Orders</p>
+
+    <div class="stat-card">
+      <h2>{{ summary?.error }}</h2>
+      <p>Errors</p>
     </div>
-    <div class="stat">
-      <h2>8</h2>
-      <p>Technicians</p>
+
+    <div class="stat-card">
+      <h2>{{ summary?.warn }}</h2>
+      <p>Warnings</p>
     </div>
-    <div class="stat">
-      <h2>24</h2>
-      <p>Service Requests</p>
+
+    <div class="stat-card">
+      <h2>{{ summary?.ok }}</h2>
+      <p>Healthy</p>
     </div>
   </section>
 
-  <section class="overview">
-    <h3>Overview</h3>
-    <div class="chart-placeholder">
-      <p>📈 Chart goes here</p>
+  <!-- CHART SECTION -->
+  <section class="charts-grid">
+    <div class="chart-card">
+      <h3>Overview</h3>
+      <canvas id="overviewChart"></canvas>
     </div>
 
+    <div class="chart-card">
+      <h3>Vehicle Status</h3>
+      <canvas id="statusChart"></canvas>
+    </div>
   </section>
 
-  <section class="latest-activity">
+  <!-- LATEST ACTIVITY -->
+  <section class="activity-card">
     <h3>Latest Activity</h3>
+
     <ul>
-      <li>Vehicle dummy1 was closed.</li>
-      <li>Service request dm-xxxx created.</li>
-      <li>Vehicle dm-xxxx was assigned to a technician.</li>
-      <li>Service request xx-xxxx updated.</li>
-      <li>Technician X marked dm-xxxx as completed.</li>
+      <li *ngFor="let v of summary?.latest">
+        {{ v.vehicleName }} ({{ v.updated }}) updated.
+      </li>
     </ul>
-  </section>
+    </section>
 </main>

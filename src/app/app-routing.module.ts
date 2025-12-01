@@ -4,26 +4,28 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
+
   {
     path: 'login',
     loadChildren: () =>
       import('./modules/login/login.module').then(m => m.LoginModule)
   },
+
   {
     path: '',
     component: MainLayoutComponent,
     children: [
       {
         path: 'dashboard',
-        loadChildren: () =>
-          import('./modules/dashboard/dashboard.module').then(
-            m => m.DashboardModule
-          )
+        loadComponent: () =>
+          import('./modules/dashboard/dashboard.component')
+            .then(c => c.DashboardComponent)   // ✔ DOĞRUSU BU
       },
       {
         path: 'vehicles',
         loadComponent: () =>
-          import('./modules/vehicles/vehicles.component').then(c => c.VehiclesComponent)
+          import('./modules/vehicles/vehicles.component')
+            .then(c => c.VehiclesComponent)   // ✔ Bu zaten doğruydu
       }
     ]
   }
