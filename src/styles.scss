@@ -7,3 +7,8 @@ html, body {
   height: 100%;
   font-family: $font-family-base;
 }
+
+html {
+  --mdc-theme-primary: #0F766E;
+  --mdc-theme-primary-dark: #00796b;
+}

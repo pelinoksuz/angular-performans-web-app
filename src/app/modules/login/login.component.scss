@@ -54,8 +54,8 @@
     transition: 0.2s ease;
 
     &--primary {
-      background-color: $primary-color;
-      color: white;
+      background-color: $primary-color !important;
+      color: white !important;
 
       &:hover {
         background-color: $primary-dark;
