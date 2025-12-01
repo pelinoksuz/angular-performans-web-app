@@ -1,14 +1,14 @@
 <aside class="sidebar" [class.expanded]="isExpanded">
   <div class="sidebar__top">
 
-    <div class="sidebar__item" matRipple>
+    <div class="sidebar__item" matRipple (click)="dashbooardClicked()">
       <mat-icon *ngIf="!isExpanded">directions_car</mat-icon>
-      <span class="sidebar__label" *ngIf="isExpanded">Vehicles</span>
+      <span class="sidebar__label" *ngIf="isExpanded">Dashboard</span>
     </div>
 
-    <div class="sidebar__item" matRipple>
+    <div class="sidebar__item" matRipple (click)="vehiclesClicked()">
       <mat-icon *ngIf="!isExpanded">build</mat-icon>
-      <span class="sidebar__label" *ngIf="isExpanded">Tools</span>
+      <span class="sidebar__label" *ngIf="isExpanded">Vehicles</span>
     </div>
 
   </div>
