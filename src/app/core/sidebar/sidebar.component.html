@@ -1,11 +1,21 @@
-<aside class="sidebar">
+<aside class="sidebar" [class.expanded]="isExpanded">
   <div class="sidebar__top">
-    <mat-icon fontIcon="directions_car" class="material-symbols-rounded"></mat-icon>
 
-    <mat-icon>build</mat-icon>
+    <div class="sidebar__item" matRipple>
+      <mat-icon *ngIf="!isExpanded">directions_car</mat-icon>
+      <span class="sidebar__label" *ngIf="isExpanded">Vehicles</span>
+    </div>
+
+    <div class="sidebar__item" matRipple>
+      <mat-icon *ngIf="!isExpanded">build</mat-icon>
+      <span class="sidebar__label" *ngIf="isExpanded">Tools</span>
+    </div>
+
   </div>
-
   <div class="sidebar__bottom">
-    <mat-icon>chevron_left</mat-icon>
+    <button mat-icon-button class="sidebar__menu-btn" type="button" (click)="toggleSidebar()">
+       <span class="mat-mdc-button-touch-target"></span>
+      <mat-icon>{{ isExpanded ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+    </button>
   </div>
 </aside>
