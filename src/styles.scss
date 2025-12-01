@@ -12,3 +12,15 @@ html {
   --mdc-theme-primary: #0F766E;
   --mdc-theme-primary-dark: #00796b;
 }
+.mat-mdc-option {
+  background-color: #f4f6f8 !important;
+}
+
+.mat-mdc-option:hover:not(.mdc-list-item--disabled) {
+  background-color: #e2e8f0 !important;
+}
+
+.mat-mdc-option.mdc-list-item--selected {
+  background-color: #0F766E !important;
+  color: #ffffff !important;
+}
