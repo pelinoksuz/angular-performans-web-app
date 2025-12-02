@@ -71,4 +71,24 @@ export class DashboardComponent implements AfterViewInit{
       }
     });
   }
+
+  navigateToAllVehicles() {
+    this.router.navigate(['/vehicles']);
+  }
+
+  navigateToAllErrors() {
+    this.router.navigate(['/vehicles'], {
+      queryParams: { health: 'ERROR' }
+    });
+  }
+  navigateToAllWarnings() {
+    this.router.navigate(['/vehicles'], {
+      queryParams: { health: 'WARN' }
+    });
+  }
+  navigateToAllHealthy() {
+    this.router.navigate(['/vehicles'], {
+      queryParams: { health: 'OK' }
+    });
+  }
 }

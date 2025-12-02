@@ -2,22 +2,22 @@
 
   <!-- TOP STATS SUMMARY -->
   <section class="stats-grid">
-    <div class="stat-card">
+    <div class="stat-card" (click)="navigateToAllVehicles()">
       <h2>{{ summary?.total }}</h2>
       <p>Total Vehicles</p>
     </div>
 
-    <div class="stat-card">
+    <div class="stat-card" (click)="navigateToAllErrors()">
       <h2>{{ summary?.error }}</h2>
       <p>Errors</p>
     </div>
 
-    <div class="stat-card">
+    <div class="stat-card" (click)="navigateToAllWarnings()">
       <h2>{{ summary?.warn }}</h2>
       <p>Warnings</p>
     </div>
 
-    <div class="stat-card">
+    <div class="stat-card" (click)="navigateToAllHealthy()">
       <h2>{{ summary?.ok }}</h2>
       <p>Healthy</p>
     </div>
