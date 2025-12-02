@@ -2,6 +2,7 @@ import { AfterViewInit, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import Chart from 'chart.js/auto';
 import { VehiclesService } from '../vehicles/services/vehicles.services';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -12,7 +13,7 @@ import { VehiclesService } from '../vehicles/services/vehicles.services';
 export class DashboardComponent implements AfterViewInit{
   summary: any;
 
-  constructor(private vehiclesService: VehiclesService) {}
+  constructor(private vehiclesService: VehiclesService, private router: Router) {}
 
   ngOnInit() {
     this.vehiclesService.getDashboardSummary().subscribe(data => {
@@ -47,18 +48,26 @@ export class DashboardComponent implements AfterViewInit{
   createStatusChart() {
     const ctx = document.getElementById('statusChart') as HTMLCanvasElement;
 
-    new Chart(ctx, {
+    let chart: Chart;
+    chart = new Chart(ctx, {
       type: 'pie',
       data: {
-        labels: ['Healthy (OK)', 'Warning', 'Error'],
+        labels: ['OK', 'WARN', 'ERROR'],
         datasets: [{
-          data: [
-            this.summary.ok,
-            this.summary.warn,
-            this.summary.error
-          ],
+          data: [this.summary.ok, this.summary.warn, this.summary.error],
           backgroundColor: ['#16a34a', '#facc15', '#dc2626']
         }]
+      },
+      options: {
+        onClick: (event, elements) => {
+          if (elements.length > 0) {
+            const index = elements[0].index;
+            const selectedHealth = chart.data.labels![index] as string;
+            this.router.navigate(['/vehicles'], {
+              queryParams: { health: selectedHealth }
+            });
+          }
+        }
       }
     });
   }

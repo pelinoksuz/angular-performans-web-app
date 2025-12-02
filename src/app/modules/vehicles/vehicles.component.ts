@@ -3,7 +3,7 @@ import { VehiclesService } from './services/vehicles.services';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-vehicles',
   standalone: true,
@@ -16,12 +16,20 @@ export class VehiclesComponent {
   filteredVehicles: any[] = [];
   searchTerm: string = '';
 
-  constructor(private vehiclesService: VehiclesService) {}
+  constructor(private vehiclesService: VehiclesService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    this.vehiclesService.getVehicles().subscribe(data => {
-      this.vehicles = data;
-      this.filteredVehicles = [...this.vehicles];
+    this.activatedRoute.queryParams.subscribe(params => {
+      const health = params['health'];
+      this.vehiclesService.getVehicles().subscribe(data => {
+        this.vehicles = data;
+
+        if (health) {
+          this.filteredVehicles = data.filter((v: { health: any; }) => v.health === health);
+        } else {
+          this.filteredVehicles = data;
+        }
+      });
     });
   }
 
