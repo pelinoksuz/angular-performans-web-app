@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  loginError: string = '';
 
   constructor(private fb: FormBuilder, private router: Router) {}
 
@@ -20,14 +21,43 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  // Fake backend function
+  getUsers() {
+    return [
+      { role: 'admin', accessCode: '1111' },
+      { role: 'operator', accessCode: '2222' },
+      { role: 'user', accessCode: '3333' }
+    ];
+  }
+
   onLogin(): void {
-    if (this.loginForm.valid) {
-      console.log('Form data:', this.loginForm.value);
-      this.router.navigate(['/dashboard']);
+    if (!this.loginForm.valid) return;
+
+    const { role, accessCode } = this.loginForm.value;
+
+    const users = this.getUsers();
+    const foundUser = users.find(u => u.role === role);
+
+    if (!foundUser) {
+      this.loginError = 'Selected role is invalid.';
+      return;
     }
+
+    if (foundUser.accessCode !== accessCode) {
+      this.loginError = 'Access code is incorrect.';
+      return;
+    }
+
+    this.loginError = '';
+    localStorage.setItem('token', 'dummy-token');
+    localStorage.setItem('role', role);
+
+    this.router.navigate(['/dashboard']);
   }
 
   continueAsGuest(): void {
+    localStorage.setItem('token', 'guest-token');
+    localStorage.setItem('role', 'guest');
     this.router.navigate(['/dashboard']);
   }
 }

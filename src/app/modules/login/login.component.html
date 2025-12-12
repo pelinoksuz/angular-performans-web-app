@@ -1,20 +1,20 @@
 <div class="login-page">
-<app-header userMode=""></app-header>
+  <app-header userMode=""></app-header>
   <!-- MAIN FORM CARD -->
   <main class="login-page__main">
     <mat-card class="login-page__card">
       <h2 class="login-page__welcome">Welcome back!</h2>
       <p class="login-page__subtitle">Select your role to continue.</p>
+      <form class="login-page__subtitle" [formGroup]="loginForm" (ngSubmit)="onLogin()">
 
-      <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login-page__form">
         <!-- Role Dropdown -->
         <mat-form-field appearance="outline" class="login-page__field">
           <mat-label>Role</mat-label>
           <mat-select formControlName="role">
             <mat-option value="">Please, select your role</mat-option>
             <mat-option value="admin">Admin</mat-option>
-            <mat-option value="engineer">Engineer</mat-option>
-            <mat-option value="guest">Guest</mat-option>
+            <mat-option value="operator">Operator</mat-option>
+            <mat-option value="user">User</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -24,8 +24,11 @@
           <input matInput formControlName="accessCode" type="password" placeholder="Enter access code" />
         </mat-form-field>
 
-        <!-- Buttons -->
-        <button mat-raised-button color="primary" class="login-page__button login-page__button--primary" type="submit" [disabled]="loginForm.invalid">
+        <!-- Error message -->
+        <p *ngIf="loginError" style="color:red; margin-bottom:10px;">
+          {{ loginError }}
+        </p>
+        <button mat-raised-button color="primary" class="login-page__button login-page__button--primary" type="submit">
           Sign In
         </button>
 
@@ -35,7 +38,4 @@
       </form>
     </mat-card>
   </main>
-
-  <!-- FOOTER -->
-  <footer class="login-page__footer"></footer>
 </div>

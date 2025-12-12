@@ -6,7 +6,7 @@
       <span class="sidebar__label" *ngIf="isExpanded">Dashboard</span>
     </div>
 
-    <div class="sidebar__item" matRipple (click)="vehiclesClicked()">
+    <div class="sidebar__item" *ngIf="role === 'admin' || role === 'operator'" matRipple (click)="vehiclesClicked()">
       <mat-icon *ngIf="!isExpanded">build</mat-icon>
       <span class="sidebar__label" *ngIf="isExpanded">Vehicles</span>
     </div>

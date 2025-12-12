@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class SidebarComponent {
 
   isExpanded = false;
+  role = localStorage.getItem('role');
 
   constructor(private router: Router) { }
 
