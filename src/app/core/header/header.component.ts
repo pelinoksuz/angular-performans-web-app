@@ -7,12 +7,15 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent{
   constructor(private router: Router) { }
 
   title: string = 'AutoOps Control';
-  @Input() userMode: 'guest' | 'admin' | 'engineer' | '' = '';
+  @Input() userMode: 'guest' | 'admin' | 'operator' | 'user' |'' = '';
 
+  ngOnInit() {
+    console.log('Header userMode:', this.userMode);
+  }
   logout() {
     this.router.navigate(['/login']);
   }

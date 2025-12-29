@@ -4,10 +4,10 @@
   <div class="app-header__right">
     <ng-container *ngIf="userMode === 'guest'">
       <span class="guest-badge">Guest Mode</span>
-      <button mat-stroked-button color="primary" (click)="logout()">Logout</button>
     </ng-container>
 
-    <ng-container *ngIf="userMode === 'admin'">
+    <ng-container>
+      <mat-icon>settings</mat-icon>
       <button mat-stroked-button color="primary" (click)="logout()">Logout</button>
     </ng-container>
   </div>
