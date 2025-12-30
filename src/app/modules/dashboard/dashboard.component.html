@@ -35,15 +35,4 @@
       <canvas id="statusChart"></canvas>
     </div>
   </section>
-
-  <!-- LATEST ACTIVITY -->
-  <section class="activity-card">
-    <h3>Latest Activity</h3>
-
-    <ul>
-      <li *ngFor="let v of summary?.latest">
-        {{ v.vehicleName }} ({{ v.updated }}) updated.
-      </li>
-    </ul>
-    </section>
 </main>

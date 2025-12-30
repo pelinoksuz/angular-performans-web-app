@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,13 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  loginError: string = '';
+  loginError = '';
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -21,8 +26,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  // Fake backend function
-  getUsers() {
+  private getUsers() {
     return [
       { role: 'admin', accessCode: '1111' },
       { role: 'operator', accessCode: '2222' },
@@ -34,30 +38,28 @@ export class LoginComponent implements OnInit {
     if (!this.loginForm.valid) return;
 
     const { role, accessCode } = this.loginForm.value;
+    const user = this.getUsers().find(u => u.role === role);
 
-    const users = this.getUsers();
-    const foundUser = users.find(u => u.role === role);
-
-    if (!foundUser) {
+    if (!user) {
       this.loginError = 'Selected role is invalid.';
       return;
     }
 
-    if (foundUser.accessCode !== accessCode) {
+    if (user.accessCode !== accessCode) {
       this.loginError = 'Access code is incorrect.';
       return;
     }
 
     this.loginError = '';
     localStorage.setItem('token', 'dummy-token');
-    localStorage.setItem('role', role);
+    this.authService.setRole(role); // ✅ Servise role gönder
 
     this.router.navigate(['/dashboard']);
   }
 
   continueAsGuest(): void {
     localStorage.setItem('token', 'guest-token');
-    localStorage.setItem('role', 'guest');
+    this.authService.setRole('guest'); // ✅ Servise role gönder
     this.router.navigate(['/dashboard']);
   }
 }

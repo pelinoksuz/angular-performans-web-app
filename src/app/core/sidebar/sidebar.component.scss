@@ -1,68 +1,107 @@
 .sidebar {
-  width: 70px;
-  height: 90dvh;   // en güvenli ekran yüksekliği
-  max-height: 100dvh;
-  background: #0F766E;
-  border-right: 1px solid #0F766E;
+  position: relative;
+  width: 80px;
+  height: 100vh;
+  background: linear-gradient(180deg, #0f766e 0%, #115e58 100%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: width 0.25s ease-in-out;
-  padding: 12px 0;
+  color: #fff;
   overflow: hidden;
+  transition: width 0.3s ease-in-out;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.15);
 
   &.expanded {
-    width: 120px;
+    width: 220px;
   }
 
   &__top {
     display: flex;
     flex-direction: column;
-    gap: 4px;
   }
 
-  &__bottom {
-    padding-bottom: 12px;
+  &__logo {
     display: flex;
+    align-items: center;
     justify-content: center;
-  }
-
-  &__menu-btn {
+    gap: 0.8rem;
+    padding: 1.5rem 0;
+    cursor: pointer;
     mat-icon {
-      color: #ffffff;
       font-size: 28px;
     }
-
-    &:hover mat-icon {
-      color: #0c5e58;
-      transform: scale(1.1);
+    .logo-text {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #e0f2f1;
     }
+  }
 
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
   }
 
   &__item {
     display: flex;
     align-items: center;
-    padding: 12px 16px;
+    gap: 1rem;
+    padding: 0.8rem 1rem;
     cursor: pointer;
-    gap: 16px;
-    transition: background-color 0.2s ease, transform 0.15s;
+    border-left: 3px solid transparent;
+    transition: background-color 0.2s, transform 0.15s;
 
     mat-icon {
-      font-size: 26px;
-      color: #ffffff;
+      font-size: 24px;
+      color: #e0f2f1;
+      transition: transform 0.2s ease;
     }
 
     &:hover {
-      background:ffffff;
-      transform: translateX(12px);
+      background-color: rgba(255, 255, 255, 0.08);
+      transform: translateX(3px);
+    }
+
+    &.active {
+      border-left-color: #ffffff;
+      background-color: rgba(255, 255, 255, 0.15);
+      mat-icon {
+        color: #ffffff;
+      }
+    }
+
+    .sidebar__label {
+      color: #e0f2f1;
+      font-weight: 500;
     }
   }
 
-  &__label {
-    font-size: 18px;
-    font-weight: 500;
-    white-space: nowrap;
-    color: #ffffff;
+  &__bottom {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  &__menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    .arrow-icon {
+      color: #ffffff;
+      font-size: 26px;
+      transition: transform 0.3s ease;
+    }
+    &:hover .arrow-icon {
+      transform: scale(1.2);
+      color: #b2dfdb;
+    }
   }
 }

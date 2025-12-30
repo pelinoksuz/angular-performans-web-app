@@ -1,0 +1,111 @@
+@use '../../../styles/variables' as *;
+
+.activity-page {
+  background-color: #f7f9fb;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 8px;
+
+    &__title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #11223c;
+    }
+
+    .clear-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-color: #009688;
+      color: #009688;
+      transition: 0.2s ease;
+
+      &:hover {
+        background-color: #e0f2f1;
+      }
+
+      mat-icon {
+        font-size: 18px;
+      }
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+  }
+
+  .activity-card {
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.08);
+    background: white;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+    }
+
+    &__content {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    &__icon {
+      background-color: #e0f2f1;
+      color: #00796b;
+      border-radius: 50%;
+      padding: 0.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__text {
+      flex: 1;
+
+      p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: #333;
+
+        strong {
+          color: #009688;
+        }
+
+        .action {
+          margin-left: 0.3rem;
+          color: #444;
+        }
+      }
+
+      .time {
+        display: block;
+        margin-top: 0.3rem;
+        font-size: 0.8rem;
+        color: #777;
+      }
+    }
+  }
+
+  .empty-state {
+    margin-top: 3rem;
+    text-align: center;
+    color: #888;
+
+    mat-icon {
+      font-size: 48px;
+      color: #b0bec5;
+    }
+
+    p {
+      margin-top: 0.5rem;
+    }
+  }
+}

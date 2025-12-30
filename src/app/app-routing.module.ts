@@ -33,8 +33,19 @@ const routes: Routes = [
           import('./modules/vehicles/vehicles.component')
             .then(c => c.VehiclesComponent),
         canActivate: [RoleGuard],
-        data: { roles: ['admin', 'operator'] } // users cannot access vehicles
-      }
+        data: { roles: ['admin', 'operator', 'user'] }
+      },
+
+      {
+      path: 'latest-activity',
+      loadComponent: () =>
+        import('./modules/latestActivity/latest-activity.component')
+          .then(c => c.LatestActivityComponent),
+      canActivate: [RoleGuard],
+      data: { roles: ['admin'] } // sadece admin erişebilir
+    }
+
+
     ]
   }
 ];

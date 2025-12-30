@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,13 +8,25 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
-  constructor(private router: Router) { }
+export class HeaderComponent implements OnInit {
+  title = 'AutoOps Control';
+  userRole: string | null = null;
+  isLoginPage = false;
+  constructor(private router: Router, private authService: AuthService) {}
 
-  title: string = 'AutoOps Control';
-  @Input() userMode: 'guest' | 'admin' | 'engineer' | '' = '';
+
+  ngOnInit(): void {
+    this.router.events.subscribe(() => {
+      this.isLoginPage = this.router.url.includes('login');
+    });
+
+    this.authService.role$.subscribe(role => {
+      this.userRole = role;
+    });
+  }
 
   logout() {
+    this.authService.clearAuth();
     this.router.navigate(['/login']);
   }
 }

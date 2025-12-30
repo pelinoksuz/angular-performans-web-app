@@ -24,7 +24,7 @@ export class VehiclesService {
     // 2️⃣ Cache yoksa API'yi çağır
     return this.http.get<any>(this.apiUrl).pipe(
       map(res =>
-        res.Results.slice(0, 10).map((item: any) => ({
+        res.Results.slice(0, 100000).map((item: any) => ({
           vehicleName: item.Make_Name,
           model: 'Model-' + Math.floor(Math.random() * 900),
           project: 'dummy project name',

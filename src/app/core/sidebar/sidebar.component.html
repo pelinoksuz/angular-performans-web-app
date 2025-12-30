@@ -1,21 +1,51 @@
 <aside class="sidebar" [class.expanded]="isExpanded">
   <div class="sidebar__top">
+    <!-- NAV ITEMS -->
+    <nav class="sidebar__nav">
+      <div
+        class="sidebar__item"
+        matRipple
+        (click)="dashbooardClicked()"
+        [class.active]="isActive('/dashboard')"
+      >
+        <mat-icon>dashboard</mat-icon>
+        <span *ngIf="isExpanded" class="sidebar__label">Dashboard</span>
+      </div>
 
-    <div class="sidebar__item" matRipple (click)="dashbooardClicked()">
-      <mat-icon *ngIf="!isExpanded">directions_car</mat-icon>
-      <span class="sidebar__label" *ngIf="isExpanded">Dashboard</span>
-    </div>
+      <div
+        class="sidebar__item"
+        matRipple
+       *ngIf="authService.currentRole === 'admin' || authService.currentRole === 'operator' || authService.currentRole === 'user'"
+        (click)="vehiclesClicked()"
+        [class.active]="isActive('/vehicles')"
+      >
+        <mat-icon>directions_car</mat-icon>
+        <span *ngIf="isExpanded" class="sidebar__label">Vehicles</span>
+      </div>
 
-    <div class="sidebar__item" *ngIf="role === 'admin' || role === 'operator'" matRipple (click)="vehiclesClicked()">
-      <mat-icon *ngIf="!isExpanded">build</mat-icon>
-      <span class="sidebar__label" *ngIf="isExpanded">Vehicles</span>
-    </div>
-
+      <div
+        class="sidebar__item"
+        matRipple
+        *ngIf="authService.currentRole === 'admin'"
+        (click)="latestActivityClicked()"
+        [class.active]="isActive('/latest-activity')"
+      >
+        <mat-icon>history</mat-icon>
+        <span *ngIf="isExpanded" class="sidebar__label">Activity</span>
+      </div>
+    </nav>
   </div>
+
+  <!-- TOGGLE ARROW (en altta sağda) -->
   <div class="sidebar__bottom">
-    <button mat-icon-button class="sidebar__menu-btn" type="button" (click)="toggleSidebar()">
-       <span class="mat-mdc-button-touch-target"></span>
-      <mat-icon>{{ isExpanded ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+    <button
+      mat-icon-button
+      class="sidebar__menu-btn"
+      type="button"
+      (click)="toggleSidebar()"
+      [attr.aria-label]="isExpanded ? 'Collapse Sidebar' : 'Expand Sidebar'"
+    >
+      <mat-icon class="arrow-icon">{{ isExpanded ? 'chevron_left' : 'chevron_right' }}</mat-icon>
     </button>
   </div>
 </aside>

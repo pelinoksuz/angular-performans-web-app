@@ -1,10 +1,11 @@
 <div class="vehicles-page">
-
+  <!-- HEADER -->
   <div class="vehicles-page__header">
-    <h2 class="vehicles-page__header__title">Vehicles ({{ filteredVehicles.length }})</h2>
+    <h2 class="vehicles-page__header__title">
+      Vehicles ({{ filteredVehicles.length }})
+    </h2>
 
     <div class="vehicles-page__actions">
-
       <input
         class="vehicles-page__actions__search-input"
         type="text"
@@ -13,24 +14,44 @@
         (input)="onSearch()"
       />
 
-      <button class="vehicles-page__actions__button" (click)="onAdd()">
+      <!-- ADD -->
+      <button
+        class="vehicles-page__actions__button primary"
+        (click)="onAdd()"
+        *ngIf="isOperator"
+        matTooltip="Add vehicle"
+      >
         <mat-icon>add</mat-icon>
       </button>
 
-      <button class="vehicles-page__actions__button" (click)="onDuplicate()">
+      <!-- DUPLICATE -->
+      <button
+        class="vehicles-page__actions__button secondary"
+        (click)="onDuplicate()"
+        *ngIf="isOperator"
+        matTooltip="Duplicate selected"
+      >
         <mat-icon>content_copy</mat-icon>
       </button>
 
-      <button class="vehicles-page__actions__button" (click)="onDelete()">
+      <!-- DELETE -->
+      <button
+        class="vehicles-page__actions__button danger"
+        (click)="onDelete()"
+        *ngIf="isOperator"
+        matTooltip="Delete selected"
+      >
         <mat-icon>delete</mat-icon>
       </button>
-
     </div>
-
   </div>
 
   <!-- TABLE -->
-  <div class="vehicles-table">
+  <div class="vehicles-table" [class.readonly]="!isOperator">
+    <div class="table-loading-overlay" *ngIf="isLoading">
+      <div class="spinner"></div>
+      <span>Loading vehicles…</span>
+    </div>
 
     <table>
       <thead>
@@ -49,11 +70,67 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let v of filteredVehicles">
-          <td><input type="checkbox" [(ngModel)]="v.selected" /></td>
-          <td>{{ v.vehicleName }}</td>
-          <td>{{ v.model }}</td>
-          <td>{{ v.project }}</td>
+        <tr *ngFor="let v of paginatedVehicles">
+          <td>
+            <input
+              type="checkbox"
+              [(ngModel)]="v.selected"
+              [disabled]="!isOperator"
+            />
+          </td>
+
+          <!-- Vehicle Name -->
+          <td
+            *ngIf="(!v.editingField || v.editingField !== 'vehicleName') && isOperator"
+            (click)="editCell(v, 'vehicleName')"
+            [title]="v.vehicleName"
+          >
+            {{ v.vehicleName }}
+          </td>
+          <td *ngIf="v.editingField === 'vehicleName' && isOperator">
+            <input
+              [(ngModel)]="v.vehicleName"
+              (blur)="saveCell(v)"
+              (keydown.enter)="saveCell(v)"
+              autofocus
+            />
+          </td>
+          <td *ngIf="!isOperator">{{ v.vehicleName }}</td>
+
+          <!-- Model -->
+          <td
+            *ngIf="(!v.editingField || v.editingField !== 'model') && isOperator"
+            (click)="editCell(v, 'model')"
+            [title]="v.model"
+          >
+            {{ v.model }}
+          </td>
+          <td *ngIf="v.editingField === 'model' && isOperator">
+            <input
+              [(ngModel)]="v.model"
+              (blur)="saveCell(v)"
+              (keydown.enter)="saveCell(v)"
+            />
+          </td>
+          <td *ngIf="!isOperator">{{ v.model }}</td>
+
+          <!-- Project -->
+          <td
+            *ngIf="(!v.editingField || v.editingField !== 'project') && isOperator"
+            (click)="editCell(v, 'project')"
+            [title]="v.project"
+          >
+            {{ v.project }}
+          </td>
+          <td *ngIf="v.editingField === 'project' && isOperator">
+            <input
+              [(ngModel)]="v.project"
+              (blur)="saveCell(v)"
+              (keydown.enter)="saveCell(v)"
+            />
+          </td>
+          <td *ngIf="!isOperator">{{ v.project }}</td>
+
           <td>{{ v.health }}</td>
           <td>{{ v.scc }}</td>
           <td>{{ v.temp }}</td>
@@ -62,9 +139,25 @@
           <td>{{ v.updated }}</td>
         </tr>
       </tbody>
-
     </table>
 
-  </div>
+    <!-- PAGINATION -->
+    <div class="pagination">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">‹</button>
 
+      <ng-container *ngFor="let p of visiblePages">
+        <button
+          *ngIf="p !== '…'"
+          (click)="goToPageSafe(p)"
+          [class.active]="currentPage === p"
+        >
+          {{ p }}
+        </button>
+
+        <span *ngIf="p === '…'" class="ellipsis">…</span>
+      </ng-container>
+
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">›</button>
+    </div>
+  </div>
 </div>

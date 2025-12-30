@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+
 @Component({
   selector: 'app-sidebar',
   standalone: false,
@@ -7,14 +9,16 @@ import { Router } from '@angular/router';
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent {
-
   isExpanded = false;
-  role = localStorage.getItem('role');
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public authService: AuthService) {}
 
   toggleSidebar() {
     this.isExpanded = !this.isExpanded;
+  }
+
+  isActive(route: string): boolean {
+    return this.router.url === route;
   }
 
   dashbooardClicked() {
@@ -23,5 +27,9 @@ export class SidebarComponent {
 
   vehiclesClicked() {
     this.router.navigate(['/vehicles']);
+  }
+
+  latestActivityClicked() {
+    this.router.navigate(['/latest-activity']);
   }
 }

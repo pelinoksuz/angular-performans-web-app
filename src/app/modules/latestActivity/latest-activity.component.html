@@ -1,0 +1,36 @@
+<div class="activity-page">
+  <!-- HEADER -->
+  <div class="activity-page__header">
+    <h2>Latest Activity</h2>
+    <button mat-stroked-button color="primary" class="clear-btn" (click)="clearLogs()">
+      <mat-icon>delete_sweep</mat-icon>
+      Clear Logs
+    </button>
+  </div>
+
+  <!-- LOG LIST -->
+  <div class="activity-page__list" *ngIf="activities.length > 0; else emptyState">
+    <mat-card *ngFor="let log of activities" class="activity-card" appearance="outlined">
+      <div class="activity-card__content">
+        <div class="activity-card__icon">
+          <mat-icon>person</mat-icon>
+        </div>
+        <div class="activity-card__text">
+          <p>
+            <strong>{{ log.user }}</strong>
+            <span class="action">{{ log.action }}</span>
+          </p>
+          <span class="time">{{ log.time }}</span>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+  <!-- EMPTY STATE -->
+  <ng-template #emptyState>
+    <div class="empty-state">
+      <mat-icon>history_toggle_off</mat-icon>
+      <p>No recent activity logs.</p>
+    </div>
+  </ng-template>
+</div>
