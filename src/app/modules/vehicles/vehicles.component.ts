@@ -178,6 +178,14 @@ export class VehiclesComponent {
 
     this.vehicles.push(newVehicle);
     this.onSearch();
+
+    const role = this.authService.currentRole;
+    if (role) {
+      this.activityService.log(
+        role,
+        `Added vehicle "${newVehicle.vehicleName}"`
+      );
+    }
   }
 
   onDuplicate() {
@@ -188,18 +196,42 @@ export class VehiclesComponent {
 
     this.vehicles.push({ ...selected, vehicleName: selected.vehicleName + ' Copy' });
     this.onSearch();
+
+    const role = this.authService.currentRole;
+    if (role) {
+      this.activityService.log(
+        role,
+        `Duplicated vehicle "${selected.vehicleName}"`
+      );
+    }
   }
 
   onDelete() {
     if (!this.isOperator) return;
-
+    const count = this.vehicles.filter(v => v.selected).length;
     this.vehicles = this.vehicles.filter(v => !v.selected);
     this.onSearch();
+
+    const role = this.authService.currentRole;
+    if (role) {
+      this.activityService.log(
+        role,
+        `Deleted ${count} vehicle(s)`
+      );
+    }
   }
 
   editCell(vehicle: any, field: string) {
     if (!this.isOperator) return;
     vehicle.editingField = field;
+    const role = this.authService.currentRole;
+    if (role) {
+      this.activityService.log(
+        role,
+        `Editing ${field} of ${vehicle.vehicleName}`
+      );
+    }
+
   }
 
   saveCell(vehicle: any) {

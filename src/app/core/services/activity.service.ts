@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 export interface ActivityLog {
   user: string;
@@ -8,18 +9,15 @@ export interface ActivityLog {
 
 @Injectable({ providedIn: 'root' })
 export class ActivityService {
-  private activities: ActivityLog[] = [];
   private readonly STORAGE_KEY = 'activity_logs';
 
-  constructor() {
-    // Uygulama ilk açıldığında localStorage'dan yükle
-    const saved = localStorage.getItem(this.STORAGE_KEY);
-    this.activities = saved ? JSON.parse(saved) : [];
-  }
+  private activitiesSubject = new BehaviorSubject<ActivityLog[]>([]);
+  activities$ = this.activitiesSubject.asObservable();
 
-  getAll(): ActivityLog[] {
-    // Yeni kopya döndür (mutasyondan kaçınmak için)
-    return [...this.activities];
+  constructor() {
+    const saved = localStorage.getItem(this.STORAGE_KEY);
+    const initial: ActivityLog[] = saved ? JSON.parse(saved) : [];
+    this.activitiesSubject.next(initial);
   }
 
   log(user: string, action: string) {
@@ -29,16 +27,13 @@ export class ActivityService {
       time: new Date().toLocaleString()
     };
 
-    this.activities.unshift(newLog); // En yeni en üstte
-    this.persist();
+    const updated = [newLog, ...this.activitiesSubject.value];
+    this.activitiesSubject.next(updated);
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(updated));
   }
 
   clear() {
-    this.activities = [];
-    this.persist();
-  }
-
-  private persist() {
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.activities));
+    this.activitiesSubject.next([]);
+    localStorage.removeItem(this.STORAGE_KEY);
   }
 }
