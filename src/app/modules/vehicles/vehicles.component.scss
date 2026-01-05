@@ -14,7 +14,7 @@
       font-size: var(--page-title-size);
       font-weight: var(--page-title-weight);
       margin: 0;
-      color: var(--color-text);
+      color: var(--text-primary);
     }
   }
 
@@ -29,8 +29,8 @@
       border-radius: var(--radius-base);
       min-width: 240px;
       font-size: 16px;
-      background: var(--color-surface);
-      color: var(--color-text);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
     }
 
     &__button {
