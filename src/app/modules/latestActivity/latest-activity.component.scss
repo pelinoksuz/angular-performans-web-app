@@ -1,5 +1,4 @@
 .activity-page {
-  background-color: var(--color-bg);
 
   &__header {
     display: flex;
@@ -10,7 +9,7 @@
     &__title {
       font-size: var(--page-title-size);
       font-weight: var(--page-title-weight);
-      color: var(--color-text);
+      color: var(--text-primary);
     }
 
     .clear-btn {
