@@ -1,11 +1,9 @@
-@use '../../../styles/variables' as *;
-
 .main-layout {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
-  background: $bg-light;
+  background: var(--layout-bg);
 
   &__mid {
     display: flex;
@@ -15,13 +13,13 @@
 
   &__content-wrapper {
     flex: 1;
-    overflow-y: auto; // when the content is longer than the screen
-    background: $bg-light;
+    overflow-y: auto;
+    background: var(--content-bg);
     padding: 16px;
   }
 
   &__footer-band {
-    background-color: $footer-accent;
+    background-color: var(--footer-band-bg);
     height: 10px;
     width: 100%;
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit {
   title = 'AutoOps Control';
   userRole: string | null = null;
   isLoginPage = false;
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService, public themeService: ThemeService) {}
 
 
   ngOnInit(): void {
@@ -23,6 +24,10 @@ export class HeaderComponent implements OnInit {
     this.authService.role$.subscribe(role => {
       this.userRole = role;
     });
+  }
+
+  toggleTheme(): void {
+    this.themeService.toggleTheme();
   }
 
   logout() {

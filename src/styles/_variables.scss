@@ -1,25 +1,46 @@
-// ======================================
-// Global SCSS Variables
-// ======================================
+/* ======================================
+   Global Design Tokens (CSS Variables)
+   ====================================== */
 
-// Colors
-$primary-color: #0F766E;
-$primary-dark: #00796b;
-$accent-color: #11223c;
-$bg-light: #f7f9fb;
-$footer-accent: #d7f3f1;
-$light-text: #E0F2F1;
-// Typography
-$font-family-base: 'Roboto', sans-serif;
+:root {
+  /* Brand Colors */
+  --color-primary: #0F766E;
+  --color-primary-dark: #03473fbb;
 
-// Spacing
-$border-radius: 8px;
-$spacing-unit: 8px;
+  --color-secondary: #151B2C;
+  --color-secondary-dark: #0c132b;
 
-// Shadow
-$shadow-soft: 0 4px 10px rgba(0, 0, 0, 0.1);
+  --color-tertiary: #7ADEDA;
+  --color-tertiary-dark: #BFFFFB;
 
-$page-title-size: 24px;
-$page-title-weight: 600;
-$page-title-padding: 16px;
-$page-title-color: #11223c;
+  /* Neutral */
+  --color-neutral-dark-50: #233747;
+  --color-neutral-light-50: #ffffff;
+
+  /* UI Surfaces */
+  --color-bg: #F4F9F7;
+  --color-surface: #ffffff;
+  --color-footer-accent: #d7f3f1;
+
+  /* Text */
+  --color-text: #11223c;
+  --color-text-light: #E0F2F1;
+
+  /* Borders & Shadows */
+  --color-border: rgba(0, 0, 0, 0.12);
+  --shadow-soft: 4px 0 10px rgba(0, 0, 0, 0.15);
+
+  /* Spacing & Radius */
+  --radius-base: 8px;
+  --spacing-unit: 8px;
+
+  /* Typography */
+  --font-family-base: 'Roboto', sans-serif;
+
+  /* Page Title */
+  --page-title-size: 24px;
+  --page-title-weight: 600;
+  --page-title-padding: 16px;
+  --page-title-color: #11223c;
+
+}

@@ -1,0 +1,83 @@
+/* =========================
+   LIGHT THEME
+   ========================= */
+.theme-light {
+  /* semantic tokens */
+  --bg-primary: var(--color-bg);
+  --bg-secondary: var(--color-surface);
+
+  --text-primary: var(--color-text);
+  --text-inverse: var(--color-text-light);
+
+  --header-bg: var(--color-secondary);
+  --header-text: var(--color-text-light);
+
+  --sidebar-bg: var(--color-primary);
+  --sidebar-text: var(--color-text-light);
+  --sidebar-text-muted: var(--color-text-light);
+
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.08);
+  --sidebar-active-bg: rgba(255, 255, 255, 0.15);
+  --sidebar-active-border: var(--color-neutral-light-50);
+
+  --sidebar-divider: var(--color-border);
+  --sidebar-bottom-bg: rgba(255, 255, 255, 0.05);
+
+  --sidebar-shadow: var(--shadow-soft);
+  --sidebar-accent: var(--color-tertiary);
+
+  --layout-bg: var(--color-bg);
+  --content-bg: var(--color-bg);
+  --footer-band-bg: var(--color-footer-accent);
+
+  --accent-color: var(--color-primary);
+
+  --card-bg: var(--color-neutral-light-50);
+
+}
+
+/* =========================
+   DARK THEME (TOKEN-ALIGNED)
+   ========================= */
+.theme-dark {
+  /* ---------- BACKGROUNDS ---------- */
+  --bg-primary: var(--color-secondary);        /* #151B2C */
+  --bg-secondary: var(--color-secondary-dark); /* #1F2937 */
+
+  --layout-bg: var(--bg-primary);
+  --content-bg: var(--bg-primary);
+
+  /* ---------- TEXT ---------- */
+  --text-primary: #e6f4f1;          /* light text ama pure white değil */
+  --text-muted: rgba(230, 244, 241, 0.7);
+  --text-inverse: #020617;
+
+  /* ---------- HEADER ---------- */
+  --header-bg: var(--color-secondary-dark);
+  --header-text: var(--text-primary);
+
+  /* ---------- SIDEBAR ---------- */
+  --sidebar-bg: var(--color-primary-dark);
+  --sidebar-text: var(--text-primary);
+  --sidebar-text-muted: var(--text-muted);
+
+  /* primary green’i alpha ile kullanıyoruz */
+  --sidebar-hover-bg: rgba(15, 118, 110, 0.15);
+  --sidebar-active-bg: rgba(15, 118, 110, 0.28);
+  --sidebar-active-border: var(--color-neutral-dark-50);
+
+  --sidebar-divider: rgba(255, 255, 255, 0.08);
+  --sidebar-bottom-bg: rgba(255, 255, 255, 0.04);
+
+  --sidebar-shadow: rgba(0, 0, 0, 0.6);
+  --sidebar-accent: var(--color-primary);
+
+  /* ---------- FOOTER ---------- */
+  --footer-band-bg: rgba(15, 118, 110, 0.2);
+
+  /* ---------- ACCENT ---------- */
+  --accent-color: var(--color-primary);
+
+  --card-bg: var(--color-neutral-dark-50);
+
+}
