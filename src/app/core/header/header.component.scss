@@ -28,4 +28,11 @@
       opacity: 0.8;
     }
   }
+
+  .mat-icon {
+    color: var(--header-text);
+    &:hover {
+      color: var(--hover);
+    }
+  }
 }

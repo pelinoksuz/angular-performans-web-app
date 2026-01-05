@@ -17,7 +17,15 @@
 
     <ng-container *ngIf="userRole">
       <span class="guest-badge">{{ userRole | titlecase }} Mode</span>
-      <button mat-stroked-button color="primary" (click)="logout()">Logout</button>
+        <button
+          mat-icon-button
+          color="primary"
+          matTooltip="Logout"
+          aria-label="Logout"
+          (click)="logout()"
+        >
+          <mat-icon>logout</mat-icon>
+        </button>
     </ng-container>
 
   </div>
