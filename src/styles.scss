@@ -1,6 +1,7 @@
 @use '@angular/material' as mat;
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
+@use 'styles/themes';
 
 /* 1) Material Built-in Theme (zorunlu) */
 html {
@@ -15,7 +16,7 @@ html {
 
 /* 2) Material Color Tokens Override (YENİ SİSTEM) */
 :root {
-  --mdc-theme-primary: #0F766E;
+  --mdc-theme-primary: var(--color-primary);
   --mdc-theme-primary-rgb: 15, 118, 110;
 
   --mdc-theme-secondary: #0F766E;
@@ -30,7 +31,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: $font-family-base;
+  font-family: var(--font-family-base);
 }
 
 /* 4) Mat-option styling (overlay) */

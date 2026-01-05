@@ -1,7 +1,5 @@
-@use '../../../styles/variables' as *;
-
 .activity-page {
-  background-color: #f7f9fb;
+  background-color: var(--color-bg);
 
   &__header {
     display: flex;
@@ -10,21 +8,21 @@
     margin-left: 8px;
 
     &__title {
-      font-size: 24px;
-      font-weight: 600;
-      color: #11223c;
+      font-size: var(--page-title-size);
+      font-weight: var(--page-title-weight);
+      color: var(--color-text);
     }
 
     .clear-btn {
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      border-color: #009688;
-      color: #009688;
+      border-color: var(--color-primary);
+      color: var(--color-primary);
       transition: 0.2s ease;
 
       &:hover {
-        background-color: #e0f2f1;
+        background-color: var(--color-tertiary);
       }
 
       mat-icon {
@@ -41,9 +39,9 @@
 
   .activity-card {
     padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.08);
-    background: white;
+    border-radius: var(--radius-base);
+    box-shadow: var(--shadow-soft);
+    background: var(--color-surface);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 
     &:hover {
@@ -58,8 +56,8 @@
     }
 
     &__icon {
-      background-color: #e0f2f1;
-      color: #00796b;
+      background-color: var(--color-tertiary);
+      color: var(--color-primary-dark);
       border-radius: 50%;
       padding: 0.6rem;
       display: flex;
@@ -73,15 +71,16 @@
       p {
         margin: 0;
         font-size: 0.95rem;
-        color: #333;
+        color: var(--color-text);
 
         strong {
-          color: #009688;
+          color: var(--color-primary);
         }
 
         .action {
           margin-left: 0.3rem;
-          color: #444;
+          color: var(--color-text);
+          opacity: 0.85;
         }
       }
 
@@ -89,7 +88,7 @@
         display: block;
         margin-top: 0.3rem;
         font-size: 0.8rem;
-        color: #777;
+        color: var(--color-neutral-dark-50);
       }
     }
   }
@@ -97,11 +96,11 @@
   .empty-state {
     margin-top: 3rem;
     text-align: center;
-    color: #888;
+    color: var(--color-neutral-dark-50);
 
     mat-icon {
       font-size: 48px;
-      color: #b0bec5;
+      color: var(--color-neutral-dark-50);
     }
 
     p {

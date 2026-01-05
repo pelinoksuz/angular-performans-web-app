@@ -1,13 +1,11 @@
-@use '../../../styles/variables' as *;
-
 .app-header {
-  background-color: $accent-color;
-  color: $light-text;
+  background-color: var(--header-bg);
+  color: var(--header-text);
   padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: $shadow-soft;
+  box-shadow: var(--shadow-soft);
 
   &__right {
     display: flex;
@@ -16,10 +14,18 @@
   }
 
   .guest-badge {
-    background: $primary-color;
-    color: $light-text;
+    background: var(--accent-color);
+    color: var(--header-text);
     padding: 0.3rem 0.8rem;
     border-radius: 4px;
     font-size: 0.85rem;
+  }
+
+  .theme-toggle {
+    color: var(--header-text);
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
