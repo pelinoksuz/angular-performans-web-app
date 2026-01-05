@@ -40,7 +40,7 @@
     padding: 1rem;
     border-radius: var(--radius-base);
     box-shadow: var(--shadow-soft);
-    background: var(--color-surface);
+    background: var(--card-bg);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 
     &:hover {
@@ -70,7 +70,7 @@
       p {
         margin: 0;
         font-size: 0.95rem;
-        color: var(--color-text);
+        color: var(--text-inverse);
 
         strong {
           color: var(--color-primary);
@@ -78,7 +78,7 @@
 
         .action {
           margin-left: 0.3rem;
-          color: var(--color-text);
+          color: var(--text-primary);
           opacity: 0.85;
         }
       }
@@ -95,11 +95,11 @@
   .empty-state {
     margin-top: 3rem;
     text-align: center;
-    color: var(--color-neutral-dark-50);
+    color: var(--text-primary);
 
     mat-icon {
       font-size: 48px;
-      color: var(--color-neutral-dark-50);
+      color: var(--text-primary);
     }
 
     p {
