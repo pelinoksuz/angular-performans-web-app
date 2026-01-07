@@ -17,7 +17,7 @@
       align-items: center;
       gap: 0.4rem;
       border-color: var(--color-primary);
-      color: var(--color-primary);
+      color: var(--subtitle-color);
       transition: 0.2s ease;
 
       &:hover {
@@ -73,7 +73,7 @@
         color: var(--text-primary);
 
         strong {
-          color: var(--color-primary);
+          color: var(--subtitle-color);
         }
 
         .action {
