@@ -11,7 +11,7 @@
       aria-label="Toggle theme"
     >
       <mat-icon>
-        {{ themeService.currentTheme === 'dark' ? 'light_mode' : 'dark_mode' }}
+        {{ theme() === 'dark' ? 'light_mode' : 'dark_mode' }}
       </mat-icon>
     </button>
 
