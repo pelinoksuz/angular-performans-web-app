@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ThemeService } from './core/services/theme.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +6,8 @@ import { ThemeService } from './core/services/theme.service';
   standalone: false,
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
+export class AppComponent{
   title = 'frontend-bootcamp-dashboard';
 
-  constructor(private themeService: ThemeService) {}
-
-  ngOnInit(): void {
-    this.themeService.initTheme();
-  }
+  constructor() {}
 }

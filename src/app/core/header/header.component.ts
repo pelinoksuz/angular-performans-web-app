@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { ThemeService } from '../services/theme.service';
@@ -13,8 +13,11 @@ export class HeaderComponent implements OnInit {
   title = 'AutoOps Control';
   userRole: string | null = null;
   isLoginPage = false;
-  constructor(private router: Router, private authService: AuthService, public themeService: ThemeService) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
+  private readonly themeService = inject(ThemeService);
+
+  readonly theme = this.themeService.theme;
 
   ngOnInit(): void {
     this.router.events.subscribe(() => {
@@ -26,8 +29,8 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  toggleTheme(): void {
-    this.themeService.toggleTheme();
+  toggleTheme() {
+    this.themeService.toggle();
   }
 
   logout() {

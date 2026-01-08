@@ -1,38 +1,27 @@
-import { Injectable } from '@angular/core';
+// theme.service.ts
+import { Injectable, signal, effect } from '@angular/core';
 
-export type ThemeMode = 'light' | 'dark';
+export type Theme = 'light' | 'dark';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class ThemeService {
-  private readonly STORAGE_KEY = 'app-theme';
 
-  initTheme(): void {
-    const savedTheme = localStorage.getItem('app-theme') as 'light' | 'dark';
-    const theme = savedTheme ?? 'light';
+  private readonly _theme = signal<Theme>(
+    (localStorage.getItem('theme') as Theme) || 'light'
+  );
 
-    document.body.classList.remove('theme-light', 'theme-dark');
-    document.body.classList.add(`theme-${theme}`);
+  readonly theme = this._theme.asReadonly();
+
+  constructor() {
+    effect(() => {
+      const theme = this._theme();
+      document.body.classList.remove('theme-light', 'theme-dark');
+      document.body.classList.add(`theme-${theme}`);
+      localStorage.setItem('theme', theme);
+    });
   }
 
-
-  toggleTheme(): void {
-    const isDark = document.body.classList.contains('theme-dark');
-    this.applyTheme(isDark ? 'light' : 'dark');
-  }
-
-  setTheme(theme: ThemeMode): void {
-    this.applyTheme(theme);
-  }
-
-  private applyTheme(theme: ThemeMode): void {
-    document.body.classList.remove('theme-light', 'theme-dark');
-    document.body.classList.add(`theme-${theme}`);
-    localStorage.setItem(this.STORAGE_KEY, theme);
-  }
-
-  get currentTheme(): ThemeMode {
-    return document.body.classList.contains('theme-dark') ? 'dark' : 'light';
+  toggle() {
+    this._theme.update(t => (t === 'light' ? 'dark' : 'light'));
   }
 }
